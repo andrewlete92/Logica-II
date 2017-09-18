@@ -63,6 +63,8 @@ public class ListaDobleCircular {
             }
             JOptionPane.showMessageDialog(null, "Nombre   Edad\n" + texto);
         }
+        System.out.println("La cabeza es: " + cab.getNombre());
+        System.out.println("La ultima es: " + ult.getNombre());
     }
 
     public void insertarFinal(String nom, int edad) {
@@ -84,8 +86,6 @@ public class ListaDobleCircular {
             ult = x;
         }
         JOptionPane.showMessageDialog(null, "Nodo insertado al final de la lista");
-        System.out.println(cab.getNombre() + " nombre en CAB");
-        System.out.println(ult.getNombre() + " nombre en ULT");
     }
 
     public void eliminarDato() {
@@ -170,7 +170,7 @@ public class ListaDobleCircular {
         }
     }
 
-    public void ordenarEdad() {
+    /*public void ordenarEdad() {
         NodoCircular q = cab, auxS, auxA, auxC, aux;
         boolean cambia = false;
         if (q == null) {
@@ -230,5 +230,39 @@ public class ListaDobleCircular {
             }
         }
         JOptionPane.showMessageDialog(null, "Lista ordenada correctamente");
+    }*/
+    public void ordenarEdad() {
+        NodoCircular q = cab, R = cab, aux;
+        //boolean cambia = false;
+        if (cab == null) {
+            JOptionPane.showMessageDialog(null, "La lista está vacía");
+        } else if (q.getLigaSig() == cab) {
+            JOptionPane.showMessageDialog(null, "La lista solo tiene un nodo, no se puede ordenar");
+        } else if (cab.getLigaSig() == ult) {
+            if (cab.getEdad() > ult.getEdad()) {
+                aux = ult;
+                ult = cab;
+                cab = aux;
+            }
+        } else {
+            while (R.getLigaSig() != cab) {
+                do {
+                    if (q.getEdad() < R.getEdad()) {
+
+                        NodoCircular naux = new NodoCircular();
+                        naux.setNombre(q.getNombre());
+                        naux.setEdad(q.getEdad());
+                        q.setNombre(R.getNombre());
+                        q.setEdad(R.getEdad());
+                        R.setNombre(naux.getNombre());
+                        R.setEdad(naux.getEdad());
+                        R = q;
+                    }
+                    q = q.getLigaSig();
+                    System.out.println("La liga de q es: " + q.getNombre());
+                } while (q != cab);
+                R = R.getLigaSig();
+            }
+        }
     }
 }

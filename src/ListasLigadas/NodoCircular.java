@@ -7,6 +7,13 @@ public class NodoCircular {
     NodoCircular ligaSig;
     NodoCircular ligaAnt;
 
+    public NodoCircular () {
+        nombre = null;
+        edad = 0;
+        ligaSig = null;
+        ligaAnt = null; 
+    }
+
     public NodoCircular(String nombre, int edad) {
         this.nombre = nombre;
         this.edad = edad;
